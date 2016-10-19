@@ -283,7 +283,6 @@ def main():
                                 while True:
                                         pass
                         except KeyboardInterrupt:
-##                                global fp
                                 print("")
                                 print("[-] Closing Threads")
                                 print("[-] Exiting WMI FIREWALL")
