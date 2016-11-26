@@ -10,8 +10,8 @@ ETH_P_IP = 0x0800
 
 op_list = {20:"ExecQuery", 21:"ExecQueryAsync", 22:"ExecNotificationQuery", 23:"ExecNotificationQueryAsync", 24:"ExecMethod", 25:"ExecMethodAsync"}
 
-keywords = ("object:Win32_", "Win32_", "cim_")
-prevention_list = ('Win32_share',)
+keywords = ("object:win32_", "win32_", "cim_")
+prevention_list = ('win32_share',)
 
 #log file
 fp = open('/var/log/wmifirewall.log', 'a+')
@@ -98,7 +98,7 @@ def listener(iface):
 
                         if d_version == 5 and d_op_num in op_list.keys():
                                 regex = re.compile("[^a-zA-Z1-9 _]")
-                                strings = re.sub(regex, '', packet[122:-24]).split()
+                                strings = re.sub(regex, '', packet[122:-24]).lower().split()
                                 if any(map(lambda x: x in strings, prevention_list)):
                                         match = prevention_list[map(lambda match: match in strings, prevention_list).index(True)]
                                         b_ip_intro = ip_intro
